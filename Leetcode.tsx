@@ -1,3 +1,7 @@
+//? LEETCODE TOP INTERVIEW 150
+
+//! EASY QUESTIONS
+
 //? 88. Merge Sorted Array
 const merge = (
   nums1: number[],
@@ -52,3 +56,29 @@ const removeDuplicates = (nums: number[]): number => {
 };
 console.log(removeDuplicates([1, 1, 2]));
 console.log(removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]));
+
+//? 169. Marjority Element
+const majorityElement = (nums: number[]): number => {
+  const obj = {};
+  let max = 0;
+  let majority = nums[0];
+  for (let i = 0; i < nums.length; i++) {
+    obj[nums[i]] ? obj[nums[i]]++ : (obj[nums[i]] = 1);
+  }
+
+  for (const [key, value] of Object.entries(obj)) {
+    if (typeof value === 'number' && value > max) {
+      max = value;
+      majority = Number(key);
+    }
+  }
+  return majority;
+};
+console.log(majorityElement([3, 2, 3]));
+console.log(majorityElement([2, 2, 1, 1, 1, 2, 2]));
+
+//? 121. Best Time to Buy and Sell Stock - Need to do this one again
+const maxProfit = (prices: number[]): number => {};
+console.log(maxProfit([7, 1, 5, 3, 6, 4]));
+console.log(maxProfit([7, 6, 4, 3, 1]));
+console.log(maxProfit([2, 50, 20, 23, 9, 1, 25, 44, 3]));
