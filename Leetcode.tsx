@@ -78,7 +78,57 @@ console.log(majorityElement([3, 2, 3]));
 console.log(majorityElement([2, 2, 1, 1, 1, 2, 2]));
 
 //? 121. Best Time to Buy and Sell Stock - Need to do this one again
-const maxProfit = (prices: number[]): number => {};
+const maxProfit = (prices: number[]): number => {
+  let minBuyPrice = prices[0];
+  let maxProfit = 0;
+  for (let i = 1; i < prices.length; i++) {
+    if (prices[i] < minBuyPrice) {
+      minBuyPrice = prices[i];
+    }
+    if (prices[i] - minBuyPrice > maxProfit) {
+      maxProfit = prices[i] - minBuyPrice;
+    }
+  }
+  return maxProfit;
+};
+
 console.log(maxProfit([7, 1, 5, 3, 6, 4]));
 console.log(maxProfit([7, 6, 4, 3, 1]));
 console.log(maxProfit([2, 50, 20, 23, 9, 1, 25, 44, 3]));
+
+//? 13. Roman to Integer
+const romanToInt = (s: string): number => {
+  const romanNumerals = {
+    I: 1,
+    IV: 4,
+    V: 5,
+    IX: 9,
+    X: 10,
+    XL: 40,
+    L: 50,
+    XC: 90,
+    C: 100,
+    CD: 400,
+    D: 500,
+    CM: 900,
+    M: 1000,
+  };
+  let value = 0;
+  for (let i = 0; i < s.length; i++) {
+    const letterToEvaluate = romanNumerals[`${s[i]}${s[i + 1]}`];
+    if (letterToEvaluate) {
+      value += letterToEvaluate;
+      i += 1;
+    } else {
+      value += romanNumerals[s[i]];
+    }
+  }
+  return value;
+};
+console.log(romanToInt('III'));
+console.log(romanToInt('LVIII'));
+console.log(romanToInt('MCMXCIV'));
+
+//? 58. Length of Last Word
+const lengthOfLastWord = (s: string): number => {};
+console.log(lengthOfLastWord('Hello World'));
