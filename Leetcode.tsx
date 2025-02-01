@@ -130,5 +130,17 @@ console.log(romanToInt('LVIII'));
 console.log(romanToInt('MCMXCIV'));
 
 //? 58. Length of Last Word
-const lengthOfLastWord = (s: string): number => {};
+const lengthOfLastWord = (s: string): number => {
+  let lastWord;
+  const arr = s.split(' ');
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (arr[i] !== '') {
+      lastWord = arr[i];
+      break;
+    }
+  }
+  return lastWord.length;
+};
 console.log(lengthOfLastWord('Hello World'));
+console.log(lengthOfLastWord('   fly me   to   the moon  '));
+console.log(lengthOfLastWord('luffy is still joyboy'));
