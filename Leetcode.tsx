@@ -144,3 +144,59 @@ const lengthOfLastWord = (s: string): number => {
 console.log(lengthOfLastWord('Hello World'));
 console.log(lengthOfLastWord('   fly me   to   the moon  '));
 console.log(lengthOfLastWord('luffy is still joyboy'));
+
+//? 14. Longest Common Prefix
+const longestCommonPrefix = (strs: string[]): string => {
+  if (!strs.length) return '';
+  if (strs.length === 1 && strs[0].length === 1) return strs[0];
+  let commonPrefix = strs[0];
+  let currentWord = '';
+  for (let i = 1; i < strs.length; i++) {
+    currentWord = strs[i];
+    while (commonPrefix.indexOf(currentWord) !== 0) {
+      currentWord = currentWord.slice(0, -1);
+    }
+    commonPrefix =
+      commonPrefix.length < currentWord.length ? commonPrefix : currentWord;
+  }
+  return commonPrefix;
+};
+
+console.log(longestCommonPrefix(['flower', 'flow', 'flight']));
+console.log(longestCommonPrefix(['dog', 'racecar', 'car']));
+console.log(longestCommonPrefix(['']));
+console.log(longestCommonPrefix(['a']));
+console.log(longestCommonPrefix(['cir', 'car']));
+console.log(longestCommonPrefix(['', 'cbc', 'c', 'ca']));
+console.log(longestCommonPrefix(['acc', 'aaa', 'aaba']));
+console.log(longestCommonPrefix(['ab', 'a']));
+console.log(longestCommonPrefix(['aaa', 'aa', 'aaa']));
+
+//? 28. Find the Index of the First Occurrence in a String
+const strStr = (haystack: string, needle: string): number => {
+  return haystack.indexOf(needle);
+};
+console.log(strStr('sadbutsad', 'sad'));
+console.log(strStr('leetcode', 'leeto'));
+console.log(strStr('leetcode', 'abcleetcode'));
+console.log(strStr('abcleetcode', 'leetcode'));
+console.log(strStr('a', 'l'));
+
+//? 125. Valid Palindrome
+const isPalindrome = (s: string): boolean => {
+  s = s.match(/[a-z0-9]/gi)?.join('') || '';
+  let i = 0;
+  let j = s.length - 1;
+  while (i < j) {
+    if (s[i].toLowerCase() !== s[j].toLowerCase()) return false;
+    i++;
+    j--;
+  }
+  return true;
+};
+
+console.log(isPalindrome('hello'));
+console.log(isPalindrome('hellos'));
+console.log(isPalindrome('A man, a plan, a canal: Panama'));
+console.log(isPalindrome('race a car'));
+console.log(isPalindrome(' '));
