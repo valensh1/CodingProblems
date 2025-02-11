@@ -200,3 +200,26 @@ console.log(isPalindrome('hellos'));
 console.log(isPalindrome('A man, a plan, a canal: Panama'));
 console.log(isPalindrome('race a car'));
 console.log(isPalindrome(' '));
+
+//? 392. Is Subsequence
+const isSubsequence = (s: string, t: string): boolean => {
+  if (!t.length && !s.length) return true;
+  if (!t.length) return false;
+  let currentIndex = 0;
+  for (let i = 0; i < s.length; i++) {
+    const slicedString = t.slice(currentIndex);
+    if (slicedString.indexOf(s[i]) >= 0) {
+      currentIndex += slicedString.indexOf(s[i]) + 1;
+    } else {
+      return false;
+    }
+  }
+  return true;
+};
+console.log(isSubsequence('abc', 'ahbgdc'));
+console.log(isSubsequence('axc', 'ahbgdc'));
+console.log(isSubsequence('', ''));
+console.log(isSubsequence('', 'aaasgtv'));
+console.log(isSubsequence('acb', 'ahbgdc'));
+console.log(isSubsequence('aaaaaa', 'bbaaaa'));
+console.log(isSubsequence('aza', 'abzba'));
