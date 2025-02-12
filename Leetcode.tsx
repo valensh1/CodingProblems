@@ -223,3 +223,29 @@ console.log(isSubsequence('', 'aaasgtv'));
 console.log(isSubsequence('acb', 'ahbgdc'));
 console.log(isSubsequence('aaaaaa', 'bbaaaa'));
 console.log(isSubsequence('aza', 'abzba'));
+
+//? Ransom Note
+const canConstruct = (ransomNote: string, magazine: string): boolean => {
+  let obj = {};
+  for (let i = 0; i < magazine.length; i++) {
+    if (!(magazine[i] in obj)) {
+      obj[magazine[i]] = 1;
+    } else {
+      obj[magazine[i]] += 1;
+    }
+  }
+  for (let j = 0; j < ransomNote.length; j++) {
+    if (!(ransomNote[j] in obj)) {
+      return false;
+    } else if (obj[ransomNote[j]] > 0) {
+      obj[ransomNote[j]] -= 1;
+    } else {
+      return false;
+    }
+  }
+  return true;
+};
+console.log(canConstruct('a', 'b'));
+console.log(canConstruct('aa', 'ab'));
+console.log(canConstruct('aa', 'aab'));
+console.log(canConstruct('aa', 'cdbacfag'));
