@@ -224,7 +224,7 @@ console.log(isSubsequence('acb', 'ahbgdc'));
 console.log(isSubsequence('aaaaaa', 'bbaaaa'));
 console.log(isSubsequence('aza', 'abzba'));
 
-//? Ransom Note
+//? 383. Ransom Note
 const canConstruct = (ransomNote: string, magazine: string): boolean => {
   let obj = {};
   for (let i = 0; i < magazine.length; i++) {
@@ -249,3 +249,28 @@ console.log(canConstruct('a', 'b'));
 console.log(canConstruct('aa', 'ab'));
 console.log(canConstruct('aa', 'aab'));
 console.log(canConstruct('aa', 'cdbacfag'));
+
+//? 205. Isomorphic Strings
+const isIsomorphic = (s: string, t: string): boolean => {
+  if (s.length !== t.length) return false;
+  let obj = {};
+  for (let i = 0; i < s.length; i++) {
+    if (!(s[i] in obj)) {
+      const values = Object.values(obj);
+      const seenBefore = values.includes(t[i]);
+      if (!seenBefore) {
+        obj[s[i]] = t[i];
+      } else {
+        return false;
+      }
+    } else if (s[i] in obj && obj[s[i]] !== t[i]) {
+      return false;
+    }
+  }
+  return true;
+};
+console.log(isIsomorphic('egg', 'add'));
+console.log(isIsomorphic('foo', 'bar'));
+console.log(isIsomorphic('paper', 'title'));
+console.log(isIsomorphic('badc', 'baba'));
+console.log(isIsomorphic('aaeaa', 'uuxyy'));
