@@ -274,3 +274,27 @@ console.log(isIsomorphic('foo', 'bar'));
 console.log(isIsomorphic('paper', 'title'));
 console.log(isIsomorphic('badc', 'baba'));
 console.log(isIsomorphic('aaeaa', 'uuxyy'));
+
+//? 290. WORD PATTERN
+const wordPattern = (pattern: string, s: string): boolean => {
+  const obj = {};
+  const sentence = s.split(' ');
+  if (pattern.length !== sentence.length) return false;
+  for (let i = 0; i < pattern.length; i++) {
+    if (!(pattern[i] in obj)) {
+      const values = Object.values(obj);
+      const seenBefore = values.includes(sentence[i]);
+      if (seenBefore) return false;
+      obj[pattern[i]] = sentence[i];
+    } else if (obj[pattern[i]] !== sentence[i]) {
+      return false;
+    } else {
+      continue;
+    }
+  }
+  return true;
+};
+console.log(wordPattern('abba', 'dog cat cat dog'));
+console.log(wordPattern('abba', 'dog cat cat fish'));
+console.log(wordPattern('aaaa', 'dog cat cat dog'));
+console.log(wordPattern('aaab', 'dog dog dog fish'));
