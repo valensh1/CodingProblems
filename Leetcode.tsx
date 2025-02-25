@@ -299,7 +299,7 @@ console.log(wordPattern('abba', 'dog cat cat fish'));
 console.log(wordPattern('aaaa', 'dog cat cat dog'));
 console.log(wordPattern('aaab', 'dog dog dog fish'));
 
-//? 242 Valid Anagram
+//? 242. Valid Anagram
 const isAnagram = (s: string, t: string): boolean => {
   const rearrangedT = t.split('').sort().join('');
   const rearrangedS = s.split('').sort().join('');
@@ -308,3 +308,27 @@ const isAnagram = (s: string, t: string): boolean => {
 };
 console.log(isAnagram('anagram', 'nagaram'));
 console.log(isAnagram('rat', 'car'));
+
+//? 1. Two Sum
+const twoSum = (nums: number[], target: number): number[] => {
+  let result: number[] = [];
+  if (nums.length === 2) {
+    result = [0, 1];
+  } else {
+    for (let i = 0; i < nums.length; i++) {
+      const numberNeeded = target - nums[i];
+      if (nums.indexOf(numberNeeded, i + 1) !== -1) {
+        result = [i, nums.indexOf(numberNeeded, i + 1)];
+      } else {
+        continue;
+      }
+    }
+  }
+  return result;
+};
+console.log(twoSum([2, 7, 11, 15], 9));
+console.log(twoSum([1, 7, 11, 15, 12, 8, 32, 6, 20], 14));
+console.log(twoSum([3, 7, 11], 14));
+console.log(twoSum([3, 2, 4], 6));
+console.log(twoSum([3, 3], 6));
+console.log(twoSum([3, 2, 3], 6));
