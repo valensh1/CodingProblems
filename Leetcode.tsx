@@ -298,3 +298,13 @@ console.log(wordPattern('abba', 'dog cat cat dog'));
 console.log(wordPattern('abba', 'dog cat cat fish'));
 console.log(wordPattern('aaaa', 'dog cat cat dog'));
 console.log(wordPattern('aaab', 'dog dog dog fish'));
+
+//? 242 Valid Anagram
+const isAnagram = (s: string, t: string): boolean => {
+  const rearrangedT = t.split('').sort().join('');
+  const rearrangedS = s.split('').sort().join('');
+  const result = rearrangedS === rearrangedT ? true : false;
+  return result;
+};
+console.log(isAnagram('anagram', 'nagaram'));
+console.log(isAnagram('rat', 'car'));
