@@ -332,3 +332,22 @@ console.log(twoSum([3, 7, 11], 14));
 console.log(twoSum([3, 2, 4], 6));
 console.log(twoSum([3, 3], 6));
 console.log(twoSum([3, 2, 3], 6));
+
+//? 219. Contains Duplicate II
+const containsNearbyDuplicate = (nums: number[], k: number): boolean => {
+  let obj = {};
+  for (let i = 0; i < nums.length; i++) {
+    if (!(nums[i] in obj)) {
+      obj[nums[i]] = i;
+    } else if (nums[i] in obj && Math.abs(obj[nums[i]] - i) <= k) {
+      return true;
+    } else {
+      obj[nums[i]] = i;
+    }
+  }
+  return false;
+};
+
+console.log(containsNearbyDuplicate([1, 2, 3, 1], 3));
+console.log(containsNearbyDuplicate([1, 0, 1, 1], 1));
+console.log(containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2));
