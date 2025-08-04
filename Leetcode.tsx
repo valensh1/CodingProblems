@@ -351,3 +351,27 @@ const containsNearbyDuplicate = (nums: number[], k: number): boolean => {
 console.log(containsNearbyDuplicate([1, 2, 3, 1], 3));
 console.log(containsNearbyDuplicate([1, 0, 1, 1], 1));
 console.log(containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2));
+
+//? 228. Summary Ranges
+const summaryRanges = (nums: number[]): string[] => {
+  const output: string[] = [];
+  let startingNumber: number = nums[0];
+
+  for (let i = 0; i < nums.length; i++) {
+    let endingNumber: number;
+
+    // Loaner number
+    if (nums[i] - 1 !== nums[i - 1] && nums[i] + 1 !== nums[i + 1]) {
+      output.push(String(nums[i]));
+    } else if (nums[i] - 1 !== nums[i - 1]) {
+      startingNumber = nums[i];
+    } else if (nums[i] - 1 === nums[i - 1] && nums[i] + 1 !== nums[i + 1]) {
+      endingNumber = nums[i];
+      output.push(`${startingNumber}->${endingNumber}`);
+    }
+  }
+  return output;
+};
+
+console.log(summaryRanges([0, 1, 2, 4, 5, 7, 9, 12]));
+console.log(summaryRanges([0, 2, 3, 4, 6, 8, 9]));
